@@ -7,19 +7,20 @@ package com.edgeburnmedia.batterystatusinfo.toast;
 import com.edgeburnmedia.batterystatusinfo.BatteryStatus;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.text.Text;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class BatteryAlertToast implements Toast {
     private static final Identifier BACKGROUND_TEXTURE = Identifier.of("minecraft", "toast/advancement");
     private static final double DISPLAY_TIME = 3000;
-    private static final int WHITE_COLOUR = 0xFFFFFF;
-    private static final int GRAY_COLOUR = 0xAAAAAA;
+    private static final int WHITE_COLOUR = Colors.WHITE;
+    private static final int GRAY_COLOUR = Colors.LIGHT_GRAY;
     private final Identifier iconTexture;
     private final BatteryStatus status;
     private double lowBatteryThreshold;
@@ -45,13 +46,13 @@ public class BatteryAlertToast implements Toast {
 
     @Override
     public void draw(DrawContext context, TextRenderer textRenderer, long startTime) {
-        context.drawGuiTexture(RenderLayer::getGuiTextured, BACKGROUND_TEXTURE, 0, 1, 160, 32);
+        context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, 0, 1, 160, 32);
 
-        context.drawTexture(RenderLayer::getGuiTextured, iconTexture, 4,5,0,0, 21,21, 21, 21);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, iconTexture, 4,5,0,0, 21,21, 21, 21);
         // 4 + 21 + 2 = x of icon texture + width of icon texture + buffer space
         context.drawText(MinecraftClient.getInstance().textRenderer, getTitle(), 4+21+2,7, WHITE_COLOUR, false);
 
-        context.drawText(MinecraftClient.getInstance().textRenderer, getSub(), 4+21+2, 7+MinecraftClient.getInstance().textRenderer.fontHeight, GRAY_COLOUR, false);
+        context.drawText(textRenderer, getSub(), 4+21+2, 7+textRenderer.fontHeight, GRAY_COLOUR, false);
     }
 
     @Override
