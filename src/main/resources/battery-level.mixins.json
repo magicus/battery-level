@@ -1,14 +1,13 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "com.edgeburnmedia.batterystatusinfo.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-  ],
   "client": [
     "SimpleResourceReloadMixin"
   ],
+  "compatibilityLevel": "JAVA_21",
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "minVersion": "0.8",
+  "mixins": [],
+  "package": "com.edgeburnmedia.batterystatusinfo.mixin",
+  "required": true
 }

@@ -8,10 +8,9 @@ import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class BatteryStatusInfoModMenuIntegration implements ModMenuApi {
-	@Override
-	public ConfigScreenFactory<?> getModConfigScreenFactory() {
-		return parent -> AutoConfigClient.getConfigScreen(BatteryStatusInfoConfig.class, parent)
-				.get();
-	}
+    @Override
+    public ConfigScreenFactory<?> getModConfigScreenFactory() {
+        return parent -> AutoConfigClient.getConfigScreen(BatteryStatusInfoConfig.class, parent)
+                .get();
+    }
 }
-

@@ -9,78 +9,83 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 @Config(name = "batterystatusinfo")
 public class BatteryStatusInfoConfig implements ConfigData {
-	@ConfigEntry.Category("general")
-	@ConfigEntry.BoundedDiscrete(max = 99, min = 1)
-	int lowBatteryThreshold = 20;
-	@ConfigEntry.Category("general")
-	@ConfigEntry.Gui.Tooltip
-	long checkInterval = 5000;
+    @ConfigEntry.Category("general")
+    @ConfigEntry.BoundedDiscrete(max = 99, min = 1)
+    int lowBatteryThreshold = 20;
 
-	@ConfigEntry.Category("alerts")
-	boolean showLowBatteryAlert = true;
-	@ConfigEntry.Category("alerts")
-	boolean showFullyChargedAlert = true;
-	@ConfigEntry.Category("alerts")
-	boolean showChargingAlert = true;
-	@ConfigEntry.Category("alerts")
-	@ConfigEntry.Gui.PrefixText
-	boolean showDischargingAlert = true;
+    @ConfigEntry.Category("general")
+    @ConfigEntry.Gui.Tooltip
+    long checkInterval = 5000;
 
-	@ConfigEntry.Category("hud")
-	boolean showHud = true;
-	@ConfigEntry.Category("hud")
-	boolean showHudWhenFullyCharged = true;
-	@ConfigEntry.Category("hud")
-	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-	Position position = Position.BOTTOM_LEFT;
-//	@ConfigEntry.Category("hud")
-//	int hudIconScale = 16;
+    @ConfigEntry.Category("alerts")
+    boolean showLowBatteryAlert = true;
 
-	public int getHudIconScale() {
-		return 16;
-	}
+    @ConfigEntry.Category("alerts")
+    boolean showFullyChargedAlert = true;
 
-	public Position getPosition() {
-		return position;
-	}
+    @ConfigEntry.Category("alerts")
+    boolean showChargingAlert = true;
 
-	public boolean isShowHud() {
-		return showHud;
-	}
+    @ConfigEntry.Category("alerts")
+    @ConfigEntry.Gui.PrefixText
+    boolean showDischargingAlert = true;
 
-	public boolean isShowHudWhenFullyCharged() {
-		return showHudWhenFullyCharged;
-	}
+    @ConfigEntry.Category("hud")
+    boolean showHud = true;
 
-	public boolean isShowLowBatteryAlert() {
-		return showLowBatteryAlert;
-	}
+    @ConfigEntry.Category("hud")
+    boolean showHudWhenFullyCharged = true;
 
-	public boolean isShowFullyChargedAlert() {
-		return showFullyChargedAlert;
-	}
+    @ConfigEntry.Category("hud")
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    Position position = Position.BOTTOM_LEFT;
+    //	@ConfigEntry.Category("hud")
+    //	int hudIconScale = 16;
 
-	public boolean isShowChargingAlert() {
-		return showChargingAlert;
-	}
+    public int getHudIconScale() {
+        return 16;
+    }
 
-	public boolean isShowDischargingAlert() {
-		return showDischargingAlert;
-	}
+    public Position getPosition() {
+        return position;
+    }
 
-	public int getLowBatteryThreshold() {
-		return lowBatteryThreshold;
-	}
+    public boolean isShowHud() {
+        return showHud;
+    }
 
-	public long getCheckInterval() {
-		return checkInterval;
-	}
+    public boolean isShowHudWhenFullyCharged() {
+        return showHudWhenFullyCharged;
+    }
 
-	public enum Position {
-		BOTTOM_LEFT,
-		BOTTOM_RIGHT,
-		TOP_LEFT,
-		TOP_RIGHT
-	}
+    public boolean isShowLowBatteryAlert() {
+        return showLowBatteryAlert;
+    }
 
+    public boolean isShowFullyChargedAlert() {
+        return showFullyChargedAlert;
+    }
+
+    public boolean isShowChargingAlert() {
+        return showChargingAlert;
+    }
+
+    public boolean isShowDischargingAlert() {
+        return showDischargingAlert;
+    }
+
+    public int getLowBatteryThreshold() {
+        return lowBatteryThreshold;
+    }
+
+    public long getCheckInterval() {
+        return checkInterval;
+    }
+
+    public enum Position {
+        BOTTOM_LEFT,
+        BOTTOM_RIGHT,
+        TOP_LEFT,
+        TOP_RIGHT
+    }
 }

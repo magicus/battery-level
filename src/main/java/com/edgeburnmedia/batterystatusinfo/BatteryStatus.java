@@ -9,33 +9,33 @@ import net.minecraft.resources.Identifier;
  * @author Edgeburn Media
  */
 public class BatteryStatus {
-	private final double charge;
-	private final boolean isCharging;
-	private final double timeRemaining;
+    private final double charge;
+    private final boolean isCharging;
+    private final double timeRemaining;
 
-	public BatteryStatus(double charge, boolean isCharging, double timeRemaining) {
-		this.timeRemaining = timeRemaining;
-		this.charge = charge;
-		this.isCharging = isCharging;
-	}
+    public BatteryStatus(double charge, boolean isCharging, double timeRemaining) {
+        this.timeRemaining = timeRemaining;
+        this.charge = charge;
+        this.isCharging = isCharging;
+    }
 
-	public double getCharge() {
-		return charge;
-	}
+    public double getCharge() {
+        return charge;
+    }
 
-	public boolean isFullyCharged() {
-		return getCharge() >= 1.0d;
-	}
+    public boolean isFullyCharged() {
+        return getCharge() >= 1.0d;
+    }
 
-	public boolean isCharging() {
-		return isCharging;
-	}
+    public boolean isCharging() {
+        return isCharging;
+    }
 
-	public double getTimeRemaining() {
-		return timeRemaining;
-	}
+    public double getTimeRemaining() {
+        return timeRemaining;
+    }
 
-	public Identifier getBatteryIcon() {
-		return BatteryUtils.getBatteryIcon(this);
-	}
+    public Identifier getBatteryIcon() {
+        return BatteryUtils.getBatteryIcon(this);
+    }
 }
