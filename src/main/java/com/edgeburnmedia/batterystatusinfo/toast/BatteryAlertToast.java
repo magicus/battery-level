@@ -78,7 +78,7 @@ public class BatteryAlertToast implements Toast {
      * Display this toast
      */
     public void show() {
-        Minecraft.getInstance().getToastManager().addToast(this);
+        Minecraft.getInstance().gui.toastManager().addToast(this);
     }
 
     @Override
