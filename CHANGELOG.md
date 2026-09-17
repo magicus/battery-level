@@ -4,7 +4,7 @@
 
 ### Added
 
-- Support for Minecraft 1.21.9
+- Support for Minecraft 1.21.4
 
 ## 1.2+1.21 - 2026-09-17
 
