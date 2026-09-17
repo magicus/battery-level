@@ -5,22 +5,22 @@
 package com.edgeburnmedia.batterystatusinfo.toast;
 
 import com.edgeburnmedia.batterystatusinfo.BatteryStatus;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gl.RenderPipelines;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.toast.Toast;
-import net.minecraft.client.toast.ToastManager;
-import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.toasts.Toast;
+import net.minecraft.client.gui.components.toasts.ToastManager;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.CommonColors;
 
 public class BatteryAlertToast implements Toast {
-    private static final Identifier BACKGROUND_TEXTURE = Identifier.of("minecraft", "toast/advancement");
+    private static final Identifier BACKGROUND_TEXTURE = Identifier.fromNamespaceAndPath("minecraft", "toast/advancement");
     private static final double DISPLAY_TIME = 3000;
-    private static final int WHITE_COLOUR = Colors.WHITE;
-    private static final int GRAY_COLOUR = Colors.LIGHT_GRAY;
+    private static final int WHITE_COLOUR = CommonColors.WHITE;
+    private static final int GRAY_COLOUR = CommonColors.LIGHT_GRAY;
     private final Identifier iconTexture;
     private final BatteryStatus status;
     private double lowBatteryThreshold;
@@ -45,32 +45,32 @@ public class BatteryAlertToast implements Toast {
     }
 
     @Override
-    public void draw(DrawContext context, TextRenderer textRenderer, long startTime) {
-        context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, 0, 1, 160, 32);
+    public void extractRenderState(GuiGraphicsExtractor context, Font textRenderer, long startTime) {
+        context.blitSprite(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, 0, 1, 160, 32);
 
-        context.drawTexture(RenderPipelines.GUI_TEXTURED, iconTexture, 4,5,0,0, 21,21, 21, 21);
+        context.blit(RenderPipelines.GUI_TEXTURED, iconTexture, 4,5,0,0, 21,21, 21, 21);
         // 4 + 21 + 2 = x of icon texture + width of icon texture + buffer space
-        context.drawText(MinecraftClient.getInstance().textRenderer, getTitle(), 4+21+2,7, WHITE_COLOUR, false);
+        context.text(Minecraft.getInstance().font, getTitle(), 4+21+2,7, WHITE_COLOUR, false);
 
-        context.drawText(textRenderer, getSub(), 4+21+2, 7+textRenderer.fontHeight, GRAY_COLOUR, false);
+        context.text(textRenderer, getSub(), 4+21+2, 7+textRenderer.lineHeight, GRAY_COLOUR, false);
     }
 
     @Override
-    public Visibility getVisibility() {
+    public Visibility getWantedVisibility() {
         return visibility;
     }
 
-    protected Text getSub() {
-        return Text.translatableWithFallback("toast.batterystatusinfo.status", "Battery is at %d%%", Math.round(status.getCharge() * 100));
+    protected Component getSub() {
+        return Component.translatableWithFallback("toast.batterystatusinfo.status", "Battery is at %d%%", Math.round(status.getCharge() * 100));
     }
 
-    protected Text getTitle() {
+    protected Component getTitle() {
         if (!status.isCharging() && status.getCharge() <= lowBatteryThreshold) {
-            return Text.translatableWithFallback("toast.batterystatusinfo.lowbattery", "Low Battery").formatted(Formatting.RED, Formatting.BOLD);
+            return Component.translatableWithFallback("toast.batterystatusinfo.lowbattery", "Low Battery").withStyle(ChatFormatting.RED, ChatFormatting.BOLD);
         } else if (status.isCharging()) {
-            return Text.translatableWithFallback("toast.batterystatusinfo.charging", "Battery Charging");
+            return Component.translatableWithFallback("toast.batterystatusinfo.charging", "Battery Charging");
         } else {
-            return Text.translatableWithFallback("toast.batterystatusinfo.discharging", "Charging Stopped");
+            return Component.translatableWithFallback("toast.batterystatusinfo.discharging", "Charging Stopped");
         }
     }
 
@@ -78,29 +78,29 @@ public class BatteryAlertToast implements Toast {
      * Display this toast
      */
     public void show() {
-        MinecraftClient.getInstance().getToastManager().add(this);
+        Minecraft.getInstance().getToastManager().addToast(this);
     }
 
     @Override
-    public Object getType() {
-        return Toast.super.getType();
+    public Object getToken() {
+        return Toast.super.getToken();
     }
 
     @Override
-    public int getWidth() {
+    public int width() {
         // TODO: dynamically calculate width
 //        TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
 //        return Math.max(textRenderer.getWidth(getTitle()), textRenderer.getWidth(getSub()));
-        return Toast.super.getWidth();
+        return Toast.super.width();
     }
 
     @Override
-    public int getHeight() {
-        return Toast.super.getHeight();
+    public int height() {
+        return Toast.super.height();
     }
 
     @Override
-    public int getRequiredSpaceCount() {
-        return Toast.super.getRequiredSpaceCount();
+    public int occcupiedSlotCount() {
+        return Toast.super.occcupiedSlotCount();
     }
 }
