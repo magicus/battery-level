@@ -8,8 +8,8 @@ on:
 
 env:
   MOD_NAME: Battery Level
-  MODRINTH_ID: 'N/A'
-  CURSEFORGE_ID: 'N/A'
+  MODRINTH_ID: 'SUO5nSik'
+  CURSEFORGE_ID: '1700162'
   JAVA_VERSION: 21
 
 jobs:
