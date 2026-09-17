@@ -1,10 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "batterystatusinfo",
+  "id": "battery-level",
   "version": "${version}",
-  "name": "Battery Status Info",
+  "name": "Battery Level",
   "description": "Show in-game alerts about your battery status",
   "authors": [
+    "magicus",
     "Edgeburn Media",
     "Sam Rolfes"
   ],
