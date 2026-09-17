@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "battery-level",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Battery Level",
   "description": "Show in-game alerts about your battery status",
   "authors": [
@@ -9,9 +9,13 @@
     "Edgeburn Media",
     "Sam Rolfes"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://github.com/magicus/battery-level",
+    "issues": "https://github.com/magicus/battery-level/issues",
+    "sources": "https://github.com/magicus/battery-level"
+  },
   "license": "MIT",
-  "icon": "assets/batterystatusinfo/icon.png",
+  "icon": "assets/battery-level/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -25,11 +29,12 @@
     ]
   },
   "mixins": [
-    "batterystatusinfo.mixins.json"
+    "battery-level.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15",
-    "fabric": "*",
-    "minecraft": "~1.21"
+    "minecraft": "${supported_minecraft_versions}",
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "cloth-config":">=${cloth_version}"
   }
 }
